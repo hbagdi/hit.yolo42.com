@@ -1,6 +1,7 @@
 // Color system
 
 $white:    #fff;
+$black:    #000;
 $gray-100: #f8f9fa;
 $gray-200: #e9ecef;
 $gray-300: #dee2e6;
@@ -8,19 +9,18 @@ $gray-400: #ced4da;
 $gray-500: #adb5bd;
 $gray-600: #6c757d;
 $gray-700: #495057;
-$gray-800: #343a40;
-$gray-900: #212529;
-$black:    #000;
+$gray-800: $black;
+$gray-900: $black;
 
 $yellow:   #ffe000;
 $black:    #1d2d35;
 $beige:    #fbf7f0;
 
 // $red:      #e55235;
-$purple:   #5d2f86;
+$purple: #83e153;
 $brown:    #aa9c84;
 
-$blue-300: #8ed6fb;
+$blue-300: #44d000;
 $pink-100: #fcfaff;
 $pink-500: #d32e9d;
 
