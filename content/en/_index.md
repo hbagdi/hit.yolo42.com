@@ -1,5 +1,5 @@
 ---
-title : "Hit"
+title : "hit"
 description: "Make and manage HTTP requests"
 lead: "Make and manage HTTP requests"
 version: "v0.1.0"

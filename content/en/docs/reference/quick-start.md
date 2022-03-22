@@ -51,7 +51,7 @@ cd my-doks-site
 ### Install dependencies
 
 ```bash
-npm install
+npm start
 ```
 
 ### Start development server

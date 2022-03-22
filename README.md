@@ -104,7 +104,7 @@ git clone https://github.com/h-enk/doks.git my-doks-site && cd my-doks-site
 ### 2. Install dependencies
 
 ```bash
-npm install
+npm start
 ```
 
 ### 3. Start development server
