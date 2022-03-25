@@ -10,9 +10,6 @@ on:
 
 jobs:
   deploy:
-    defaults:
-      run:
-        working-directory: docs
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -26,7 +23,6 @@ jobs:
         run: npm install
 
       #- name: Check for linting errors
-      #  working-directory: docs
       #  run: npm test
 
       - name: Build production website
