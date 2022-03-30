@@ -1,7 +1,7 @@
 ---
 title: "Quick Start"
-description: "One page summary of how to start a new Doks project."
-lead: "One page summary of how to start a new Doks project."
+description: "One page summary of how to use hit."
+lead: "One page summary of how to use hit."
 date: 2020-11-16T13:59:39+01:00
 lastmod: 2020-11-16T13:59:39+01:00
 draft: false
@@ -15,53 +15,85 @@ toc: true
 
 ## Requirements
 
-- Download and install [Node.js](https://nodejs.org/) (it includes npm) for your platform.
+- Install hit. Please refer the [installation guide](/docs/install/install).
 
-## Start a new Doks project
+## Verify hit is installed correctly
 
-Create a new site, change directories, install dependencies, and start development server.
-
-### Create a new site
-
-Doks is available as a child theme, and a starter theme:
-
-- Use the Doks child theme, if you do __not__ plan to customize a lot, and/or need future Doks updates.
-- Use the Doks starter theme, if you plan to customize a lot, and/or do __not__ need future Doks updates.
-
-Not quite sure? Use the Doks child theme.
-
-#### Doks child theme
-
-```bash
-git clone https://github.com/h-enk/doks-child-theme.git my-doks-site
+```shell
+hit version
 ```
 
-#### Doks starter theme
+It should output the version of hit that is currently installed on your system.
 
-```bash
-git clone https://github.com/h-enk/doks.git my-doks-site
+## Create your first hit file
+
+Create a hit file using the following command:
+
+```shell
+echo '
+@_global
+base_url=http://httpbin.org
+version=1
+
+
+@r0
+GET
+/headers
+foo: bar
+baz: qux
+' > hello.hit
 ```
 
-### Change directories
+The above file defines a couple of things:
 
-```bash
-cd my-doks-site
+- `@_global` section defines hit settings that apply to all files in the
+current directory. Two global properties are defined, `base_url` and `version`.
+All requests are constructed on top of the `base_url`. `version` is the
+version of the hit file - the only valid version is 1.
+- `@r0` section defines an HTTP request with an ID of `r0`. The line after
+the ID, in this case 'GET' defines the
+[HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+used to construct the request. Next line is the HTTP request line, popularly
+known as the HTTP path of the request. Lines after the path are HTTP headers for
+the request.
+
+With that bit of background, let's go ahead and hit your first HTTP request:
+
+```shell
+hit @c0
 ```
 
-### Install dependencies
+The above command instructs hit to load all files in the present workibng
+directory and initiate the `c0` request.
+The request and response are printed on the screen. It should look something
+like:
 
-```bash
-npm start
+```shell
+GET /headers HTTP/1.1
+Host: httpbin.org
+User-Agent: Go-http-client/1.1
+foo-header: bar
+Accept-Encoding: gzip
+
+
+HTTP/1.1 200 OK
+Content-Length: 216
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Content-Type: application/json
+Date: Wed, 30 Mar 2022 04:18:33 GMT
+Server: gunicorn/19.9.0
+
+{
+  "headers": {
+    "Accept-Encoding": "gzip",
+    "Foo-Header": "bar",
+    "Host": "httpbin.org",
+    "User-Agent": "Go-http-client/1.1",
+    "X-Amzn-Trace-Id": "Root=1-6243da19-708fb5131135b2582a339aaa"
+  }
+}
 ```
 
-### Start development server
-
-```bash
-npm run start
-```
-
-Doks will start the Hugo development webserver accessible by default at `http://localhost:1313`. Saved changes will live reload in the browser.
-
-## Other commands
-
-Doks comes with commands for common tasks. [Commands →]({{< relref "commands" >}})
+Congratulations! You hit your first HTTP request successfully.
