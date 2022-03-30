@@ -1,7 +1,7 @@
 ---
 title: "Commands"
-description: "Doks comes with commands for common tasks."
-lead: "Doks comes with commands for common tasks."
+description: "Commands in the hit program"
+lead: "Commands in the hit program"
 date: 2020-10-13T15:21:01+02:00
 lastmod: 2020-10-13T15:21:01+02:00
 draft: false
@@ -13,86 +13,20 @@ weight: 130
 toc: true
 ---
 
-{{< alert icon="💡" text="You can change the commands in the scripts section of `./package.json`." />}}
+hit's goals is to be as simple and straight-forward to use as possible.
+And in that spirit the number of command that hit supports is fairly small.
+For hitting HTTP requests, the core `hit` command should be sufficient most
+of the time.
 
-## create
+For other situations, there are a few other commands avaialble:
 
-Create new content for your site:
+## version
 
-```bash
-npm run create [path] [flags]
-```
+Output the version of the hit command.
 
-See also the Hugo docs: [hugo new](https://gohugo.io/commands/hugo_new/).
-
-## lint
-
-Check scripts, styles, and markdown for errors:
+For example:
 
 ```bash
-npm run lint
-```
-
-### scripts
-
-Check scripts for errors:
-
-```bash
-npm run lint:scripts [-- --fix]
-```
-
-### styles
-
-Check styles for errors:
-
-```bash
-npm run lint:styles [-- --fix]
-```
-
-### markdown
-
-Check markdown for errors:
-
-```bash
-npm run lint:markdown [-- --fix]
-```
-
-## clean
-
-Delete temporary directories:
-
-```bash
-npm run clean
-```
-
-## start
-
-Start local development server:
-
-```bash
-npm run start
-```
-
-## build
-
-Build production website:
-
-```bash
-npm run build
-```
-
-### functions
-
-Build Lambda functions:
-
-```bash
-npm run build:functions
-```
-
-### preview
-
-Build production website including draft and future content:
-
-```bash
-npm run build:preview
+$ hit version
+v0.1.0 (commit: f563300)
 ```

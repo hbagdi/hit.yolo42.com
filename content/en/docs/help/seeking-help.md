@@ -8,5 +8,5 @@ draft: false
 images: []
 ---
 
-
-Hello world
+If you are stuck or happen to run into a bug, please open a Github issue on
+the [hbagdi/hit](https://github.com/hbagdi/hit/issues) repository to seek help.
