@@ -1,7 +1,7 @@
 ---
 title: "Quick Start"
-description: "One page summary of how to use hit."
-lead: "One page summary of how to use hit."
+description: "A summary of how to use hit."
+lead: "A summary of how to use hit."
 date: 2020-11-16T13:59:39+01:00
 lastmod: 2020-11-16T13:59:39+01:00
 draft: false
@@ -32,16 +32,16 @@ Create a hit file using the following command:
 ```shell
 echo '
 @_global
-base_url=http://httpbin.org
+base_url=https://httpbin.org
 version=1
 
 
-@r0
+@c0
 GET
 /headers
 foo: bar
 baz: qux
-' > hello.hit
+' > quick-start.hit
 ```
 
 The above file defines a couple of things:
@@ -97,3 +97,77 @@ Server: gunicorn/19.9.0
 ```
 
 Congratulations! You hit your first HTTP request successfully.
+
+
+### Enable auto-completion
+
+Let's first enable shell auto-completion to save some keystrokes.
+
+```shell
+source <(hit completion)
+```
+
+You can type `hit` and press the `TAB` key to see suggestions.
+In the above file, there is only request so your shell will automatically
+complete the prompt to `hit @c0`.
+
+
+## An advanced example - Nodes API
+
+Next, let's grab a hit file that does more than a `GET` request.
+
+```shell
+curl --silent https://hit.yolo42.com/quick-start.hit --output quick-start.hit
+```
+
+Create a root node for the tree using hit.
+
+```shell
+hit @gen-root-node
+```
+
+Next, we are going to create a child node under the root node:
+
+```shell
+hit @create-node "buy-groceries" @gen-root-node.id
+```
+
+In the above command, the parameter `@gen-root-node.id` references the
+`id` field from the latest response body of the `@gen-root-node` request.
+
+Let's create another node under the node that we just created.
+
+```shell
+hit @create-node "tomatoes" @create-node.id
+```
+
+Let's take a look at tour grocery list.
+
+```shell
+hit @get-node @create-node.parent_id
+```
+
+Let's go ahead and add a couple of items.
+
+```shell
+hit @create-node "potatoes" @get-node.id
+hit @create-node "milk" @get-node.id
+```
+
+Let's grab our grocery list now.
+
+```shell
+hit @get-node @get-node.id
+```
+
+Let's delete an item, let's delete the first item in the grocery list.
+
+```shell
+hit @delete-node @get-node.children.0.id
+```
+
+Grab the grocery list again
+
+```shell
+hit @get-node @get-node.id
+```
