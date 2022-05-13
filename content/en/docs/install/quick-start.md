@@ -13,9 +13,23 @@ weight: 110
 toc: true
 ---
 
-## Requirements
+## Install hit
 
-- Install hit. Please refer the [installation guide](/docs/install/install).
+### macOS
+
+```bash
+brew install hbagdi/tap/hit
+```
+
+### Linux
+
+Grab the binary from the release page and install:
+
+```bash
+curl -sL https://github.com/hbagdi/hit/releases/download/v0.1.0/hit_0.1.0_linux_amd64.tar.gz -o hit.tar.gz
+tar -xf hit.tar.gz -C /tmp
+sudo cp /tmp/hit /usr/local/bin/
+```
 
 ## Verify hit is installed correctly
 
