@@ -4,6 +4,7 @@ description: "Seek help with hit."
 lead: ""
 draft: false
 images: []
+weight: 61
 ---
 
 If you happen to run into a use-case that `hit` does not yet support or happen

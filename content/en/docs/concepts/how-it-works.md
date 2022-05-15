@@ -1,7 +1,7 @@
 ---
 title: "How it works"
 draft: true
-weight: 110
+weight: 93
 toc: true
 ---
 

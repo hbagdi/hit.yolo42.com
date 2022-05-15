@@ -2,14 +2,9 @@
 title: "Quick Start"
 description: "A summary of how to use hit."
 lead: "A summary of how to use hit."
-date: 2020-11-16T13:59:39+01:00
-lastmod: 2020-11-16T13:59:39+01:00
 draft: false
 images: []
-menu:
-  docs:
-    parent: "prologue"
-weight: 110
+weight: 102
 toc: true
 ---
 

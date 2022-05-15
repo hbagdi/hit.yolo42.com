@@ -3,7 +3,7 @@ title: "Introduction"
 lead: "hit is a command to manage and make HTTP requests."
 draft: false
 images: []
-weight: 100
+weight: 91
 toc: true
 ---
 
