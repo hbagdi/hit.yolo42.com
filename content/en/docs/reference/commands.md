@@ -18,7 +18,7 @@ And in that spirit the number of command that hit supports is fairly small.
 For hitting HTTP requests, the core `hit` command should be sufficient most
 of the time.
 
-For other situations, there are a few other commands avaialble:
+For other situations, there are a few other commands available:
 
 ## version
 

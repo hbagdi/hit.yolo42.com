@@ -7,9 +7,11 @@
     <div class="col-lg-9 col-xl-8 text-center">
       <p class="lead">{{ .Params.lead | safeHTML }}</p>
       <a class="btn btn-primary btn-lg px-4 mb-2"
-         href="/docs/{{ if .Site.Params.options.docsVersioning }}{{ .Site.Params.docsVersion }}/{{ end }}install/quick-start" role="button">Get Started</a>
-      <p class="meta">Open-source <a
-        href="https://github.com/hbagdi/hit">GitHub {{ .Params.version | safeHTML}}</a></p>
+         href="/docs/{{ if .Site.Params.options.docsVersioning }}{{ .Site.Params.docsVersion }}/{{ end }}get-started/quick-start" role="button">Get Started</a>
+      <p class="meta">
+        Apache 2.0 Licensed
+      </p>
+
     </div>
   </div>
 </section>
@@ -31,8 +33,9 @@
         </div>
         <div class="col-lg-5">
           <h2 class="h4">Templating</h2>
-          <p>Refer to JSON values from previous responses in subsequent
-            requets.</p>
+          <p>Refer to values from previous responses in subsequent
+            requests. Build programmatic workflows.
+            </p>
         </div>
       </div>
     </div>

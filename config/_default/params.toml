@@ -16,7 +16,7 @@ domainTLD = "hit.yolo42.com"
 titleHome = "Hit"
 
 ## Twitter Cards
-#twitterSite = "@hbagdi42"
+twitterSite = "@hitcmd"
 twitterCreator = "@hbagdi42"
 
 ## JSON-LD
