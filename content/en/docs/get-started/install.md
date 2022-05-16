@@ -3,9 +3,6 @@ title: "Install hit"
 description: "Install hit"
 draft: false
 images: []
-menu:
-  docs:
-    parent: "prologue"
 weight: 101
 toc: true
 ---

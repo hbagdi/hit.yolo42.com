@@ -28,7 +28,7 @@ sudo cp /tmp/hit /usr/local/bin/
 
 ## Verify hit is installed correctly
 
-```shell
+```bash
 hit version
 ```
 
@@ -38,7 +38,7 @@ It should output the version of hit that is currently installed on your system.
 
 Create a hit file using the following command:
 
-```shell
+```bash
 echo '
 @_global
 base_url=https://httpbin.org
@@ -59,25 +59,25 @@ The above file defines a couple of things:
 current directory. Two global properties are defined, `base_url` and `version`.
 All requests are constructed on top of the `base_url`. `version` is the
 version of the hit file - the only valid version is 1.
-- `@r0` section defines an HTTP request with an ID of `r0`. The line after
+- `@c0` section defines an HTTP request with an ID of `r0`. The line after
 the ID, in this case 'GET' defines the
 [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
-used to construct the request. Next line is the HTTP request line, popularly
-known as the HTTP path of the request. Lines after the path are HTTP headers for
-the request.
+used for the request. Next line is the HTTP request line, popularly
+known as the HTTP path of the request. Lines after the path are have
+key-value pairs defining HTTP headers for the request.
 
-With that bit of background, let's go ahead and hit your first HTTP request:
+With that bit of background, go ahead and hit your first HTTP request:
 
-```shell
+```bash
 hit @c0
 ```
 
-The above command instructs hit to load all files in the present workibng
+The above command instructs hit to load all files in the present working
 directory and initiate the `c0` request.
 The request and response are printed on the screen. It should look something
 like:
 
-```shell
+```bash
 GET /headers HTTP/1.1
 Host: httpbin.org
 User-Agent: Go-http-client/1.1
@@ -112,7 +112,7 @@ Congratulations! You hit your first HTTP request successfully.
 
 Let's first enable shell auto-completion to save some keystrokes.
 
-```shell
+```bash
 source <(hit completion)
 ```
 
@@ -125,19 +125,20 @@ complete the prompt to `hit @c0`.
 
 Next, let's grab a hit file that does more than a `GET` request.
 
-```shell
+```bash
 curl --silent https://hit.yolo42.com/quick-start.hit --output quick-start.hit
 ```
 
-Create a root node for the tree using hit.
+This [API](https://nodes.yolo42.com) helps build a tree-based
+data-structure. Let's go ahead and create the root node of the tree:
 
-```shell
+```bash
 hit @gen-root-node
 ```
 
 Next, we are going to create a child node under the root node:
 
-```shell
+```bash
 hit @create-node "buy-groceries" @gen-root-node.id
 ```
 
@@ -146,37 +147,41 @@ In the above command, the parameter `@gen-root-node.id` references the
 
 Let's create another node under the node that we just created.
 
-```shell
+```bash
 hit @create-node "tomatoes" @create-node.id
 ```
 
 Let's take a look at tour grocery list.
 
-```shell
+```bash
 hit @get-node @create-node.parent_id
 ```
 
 Let's go ahead and add a couple of items.
 
-```shell
+```bash
 hit @create-node "potatoes" @get-node.id
 hit @create-node "milk" @get-node.id
 ```
 
 Let's grab our grocery list now.
 
-```shell
+```bash
 hit @get-node @get-node.id
 ```
 
 Let's delete an item, let's delete the first item in the grocery list.
 
-```shell
+```bash
 hit @delete-node @get-node.children.0.id
 ```
 
 Grab the grocery list again
 
-```shell
+```bash
 hit @get-node @get-node.id
 ```
+
+Hope you get the idea!
+`hit` hides away internal details of the API and provides a simple and
+intuitive interface to exectue requests defined as templates.
