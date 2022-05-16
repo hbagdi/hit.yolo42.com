@@ -13,10 +13,11 @@ weight: 72
 toc: true
 ---
 
-hit's goals is to be as simple and straight-forward to use as possible.
+hit's goals is to be as simple and intuitive to use as possible.
 And in that spirit the number of command that hit supports is fairly small.
-For hitting HTTP requests, the core `hit` command should be sufficient most
-of the time.
+For hitting HTTP requests, `hit` followed by the request identifier (for
+example `@foo`)
+should be sufficient.
 
 For other situations, there are a few other commands available:
 
@@ -27,6 +28,19 @@ Output the version of the hit command.
 For example:
 
 ```bash
-$ hit version
-v0.1.0 (commit: f563300)
+hit version
+```
+
+## completion
+
+Output the shell completion script for hit.
+
+```bash
+hit completion
+```
+
+Typically, you would do something like:
+
+```bash
+source <(hit completion)
 ```
