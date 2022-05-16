@@ -4,8 +4,8 @@
 </code></pre><h3 id=linux>Linux <a href=#linux class=anchor aria-hidden=true>#</a></h3><p>Grab the binary from the release page and install:</p><pre><code class=language-bash>curl -sL https://github.com/hbagdi/hit/releases/download/v0.1.0/hit_0.1.0_linux_amd64.tar.gz -o hit.tar.gz
 tar -xf hit.tar.gz -C /tmp
 sudo cp /tmp/hit /usr/local/bin/
-</code></pre><h2 id=verify-hit-is-installed-correctly>Verify hit is installed correctly <a href=#verify-hit-is-installed-correctly class=anchor aria-hidden=true>#</a></h2><pre><code class=language-shell>hit version
-</code></pre><p>It should output the version of hit that is currently installed on your system.</p><h2 id=create-your-first-hit-file>Create your first hit file <a href=#create-your-first-hit-file class=anchor aria-hidden=true>#</a></h2><p>Create a hit file using the following command:</p><pre><code class=language-shell>echo '
+</code></pre><h2 id=verify-hit-is-installed-correctly>Verify hit is installed correctly <a href=#verify-hit-is-installed-correctly class=anchor aria-hidden=true>#</a></h2><pre><code class=language-bash>hit version
+</code></pre><p>It should output the version of hit that is currently installed on your system.</p><h2 id=create-your-first-hit-file>Create your first hit file <a href=#create-your-first-hit-file class=anchor aria-hidden=true>#</a></h2><p>Create a hit file using the following command:</p><pre><code class=language-bash>echo '
 @_global
 base_url=https://httpbin.org
 version=1
@@ -20,16 +20,16 @@ baz: qux
 </code></pre><p>The above file defines a couple of things:</p><ul><li><code>@_global</code> section defines hit settings that apply to all files in the
 current directory. Two global properties are defined, <code>base_url</code> and <code>version</code>.
 All requests are constructed on top of the <code>base_url</code>. <code>version</code> is the
-version of the hit file - the only valid version is 1.</li><li><code>@r0</code> section defines an HTTP request with an ID of <code>r0</code>. The line after
+version of the hit file - the only valid version is 1.</li><li><code>@c0</code> section defines an HTTP request with an ID of <code>r0</code>. The line after
 the ID, in this case &lsquo;GET&rsquo; defines the
 <a href=https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>HTTP method</a>
-used to construct the request. Next line is the HTTP request line, popularly
-known as the HTTP path of the request. Lines after the path are HTTP headers for
-the request.</li></ul><p>With that bit of background, let&rsquo;s go ahead and hit your first HTTP request:</p><pre><code class=language-shell>hit @c0
-</code></pre><p>The above command instructs hit to load all files in the present workibng
+used for the request. Next line is the HTTP request line, popularly
+known as the HTTP path of the request. Lines after the path are have
+key-value pairs defining HTTP headers for the request.</li></ul><p>With that bit of background, go ahead and hit your first HTTP request:</p><pre><code class=language-bash>hit @c0
+</code></pre><p>The above command instructs hit to load all files in the present working
 directory and initiate the <code>c0</code> request.
 The request and response are printed on the screen. It should look something
-like:</p><pre><code class=language-shell>GET /headers HTTP/1.1
+like:</p><pre><code class=language-bash>GET /headers HTTP/1.1
 Host: httpbin.org
 User-Agent: Go-http-client/1.1
 foo-header: bar
@@ -54,21 +54,24 @@ Server: gunicorn/19.9.0
     &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-6243da19-708fb5131135b2582a339aaa&quot;
   }
 }
-</code></pre><p>Congratulations! You hit your first HTTP request successfully.</p><h3 id=enable-auto-completion>Enable auto-completion <a href=#enable-auto-completion class=anchor aria-hidden=true>#</a></h3><p>Let&rsquo;s first enable shell auto-completion to save some keystrokes.</p><pre><code class=language-shell>source &lt;(hit completion)
+</code></pre><p>Congratulations! You hit your first HTTP request successfully.</p><h3 id=enable-auto-completion>Enable auto-completion <a href=#enable-auto-completion class=anchor aria-hidden=true>#</a></h3><p>Let&rsquo;s first enable shell auto-completion to save some keystrokes.</p><pre><code class=language-bash>source &lt;(hit completion)
 </code></pre><p>You can type <code>hit</code> and press the <code>TAB</code> key to see suggestions.
 In the above file, there is only request so your shell will automatically
-complete the prompt to <code>hit @c0</code>.</p><h2 id=an-advanced-example---nodes-api>An advanced example - Nodes API <a href=#an-advanced-example---nodes-api class=anchor aria-hidden=true>#</a></h2><p>Next, let&rsquo;s grab a hit file that does more than a <code>GET</code> request.</p><pre><code class=language-shell>curl --silent https://hit.yolo42.com/quick-start.hit --output quick-start.hit
-</code></pre><p>Create a root node for the tree using hit.</p><pre><code class=language-shell>hit @gen-root-node
-</code></pre><p>Next, we are going to create a child node under the root node:</p><pre><code class=language-shell>hit @create-node &quot;buy-groceries&quot; @gen-root-node.id
+complete the prompt to <code>hit @c0</code>.</p><h2 id=an-advanced-example---nodes-api>An advanced example - Nodes API <a href=#an-advanced-example---nodes-api class=anchor aria-hidden=true>#</a></h2><p>Next, let&rsquo;s grab a hit file that does more than a <code>GET</code> request.</p><pre><code class=language-bash>curl --silent https://hit.yolo42.com/quick-start.hit --output quick-start.hit
+</code></pre><p>This <a href=https://nodes.yolo42.com>API</a> helps build a tree-based
+data-structure. Let&rsquo;s go ahead and create the root node of the tree:</p><pre><code class=language-bash>hit @gen-root-node
+</code></pre><p>Next, we are going to create a child node under the root node:</p><pre><code class=language-bash>hit @create-node &quot;buy-groceries&quot; @gen-root-node.id
 </code></pre><p>In the above command, the parameter <code>@gen-root-node.id</code> references the
-<code>id</code> field from the latest response body of the <code>@gen-root-node</code> request.</p><p>Let&rsquo;s create another node under the node that we just created.</p><pre><code class=language-shell>hit @create-node &quot;tomatoes&quot; @create-node.id
-</code></pre><p>Let&rsquo;s take a look at tour grocery list.</p><pre><code class=language-shell>hit @get-node @create-node.parent_id
-</code></pre><p>Let&rsquo;s go ahead and add a couple of items.</p><pre><code class=language-shell>hit @create-node &quot;potatoes&quot; @get-node.id
+<code>id</code> field from the latest response body of the <code>@gen-root-node</code> request.</p><p>Let&rsquo;s create another node under the node that we just created.</p><pre><code class=language-bash>hit @create-node &quot;tomatoes&quot; @create-node.id
+</code></pre><p>Let&rsquo;s take a look at tour grocery list.</p><pre><code class=language-bash>hit @get-node @create-node.parent_id
+</code></pre><p>Let&rsquo;s go ahead and add a couple of items.</p><pre><code class=language-bash>hit @create-node &quot;potatoes&quot; @get-node.id
 hit @create-node &quot;milk&quot; @get-node.id
-</code></pre><p>Let&rsquo;s grab our grocery list now.</p><pre><code class=language-shell>hit @get-node @get-node.id
-</code></pre><p>Let&rsquo;s delete an item, let&rsquo;s delete the first item in the grocery list.</p><pre><code class=language-shell>hit @delete-node @get-node.children.0.id
-</code></pre><p>Grab the grocery list again</p><pre><code class=language-shell>hit @get-node @get-node.id
-</code></pre><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"><div class=edit-page><a href=https://github.com/hbagdi/hit.yolo42.com/blob/main/content/en/docs/get-started/quick-start.md><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>Edit this page on GitHub</a></div></div><div class="docs-navigation d-flex justify-content-between"><a href=/docs/get-started/install/><div class="card my-1"><div class="card-body py-2">&larr; Install hit</div></div></a></div></main></div></div></div><footer class="footer mt-auto text-muted"><div class=container-xxl><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Maintained by <a target=_blank class=text-muted href=https://github.com/hbagdi/>@hbagdi</a></li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline></ul></div></div></div></footer><script src=/js/bootstrap.min.fdbe9b9ba88a036135318f3c721784d684ac9e3280fe282cc80d7d49f7f9c82780cd54228c1608685a230c09984300d7946fc471734d566fcebc148b65bd16db.js integrity="sha512-/b6bm6iKA2E1MY88cheE1oSsnjKA/igsyA19Sff5yCeAzVQijBYIaFojDAmYQwDXlG/EcXNNVm/OvBSLZb0W2w==" crossorigin=anonymous defer></script>
+</code></pre><p>Let&rsquo;s grab our grocery list now.</p><pre><code class=language-bash>hit @get-node @get-node.id
+</code></pre><p>Let&rsquo;s delete an item, let&rsquo;s delete the first item in the grocery list.</p><pre><code class=language-bash>hit @delete-node @get-node.children.0.id
+</code></pre><p>Grab the grocery list again</p><pre><code class=language-bash>hit @get-node @get-node.id
+</code></pre><p>Hope you get the idea!
+<code>hit</code> hides away internal details of the API and provides a simple and
+intuitive interface to exectue requests defined as templates.</p><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"><div class=edit-page><a href=https://github.com/hbagdi/hit.yolo42.com/blob/main/content/en/docs/get-started/quick-start.md><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>Edit this page on GitHub</a></div></div><div class="docs-navigation d-flex justify-content-between"><a href=/docs/get-started/install/><div class="card my-1"><div class="card-body py-2">&larr; Install hit</div></div></a></div></main></div></div></div><footer class="footer mt-auto text-muted"><div class=container-xxl><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Maintained by <a target=_blank class=text-muted href=https://github.com/hbagdi/>@hbagdi</a></li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline></ul></div></div></div></footer><script src=/js/bootstrap.min.fdbe9b9ba88a036135318f3c721784d684ac9e3280fe282cc80d7d49f7f9c82780cd54228c1608685a230c09984300d7946fc471734d566fcebc148b65bd16db.js integrity="sha512-/b6bm6iKA2E1MY88cheE1oSsnjKA/igsyA19Sff5yCeAzVQijBYIaFojDAmYQwDXlG/EcXNNVm/OvBSLZb0W2w==" crossorigin=anonymous defer></script>
 <script src=/js/highlight.min.451fe6185924dcedf55c767559b5130f666f31c989f0078a75bafc346ad7364e180edfd731b1ca6bae0e90dfee88842885d284126ab0879f5067399e3a02b09e.js integrity="sha512-RR/mGFkk3O31XHZ1WbUTD2ZvMcmJ8AeKdbr8NGrXNk4YDt/XMbHKa64OkN/uiIQohdKEEmqwh59QZzmeOgKwng==" crossorigin=anonymous defer></script>
 <script src=/main.min.a84f6aaa9898062bf7292365ff451efd5d285ee9b0497e4e84a489a99b92513462b8975e3c4560424003af4c099d83a59c2db4e8a8d653a093fbe3a44f0c75ff.js integrity="sha512-qE9qqpiYBiv3KSNl/0Ue/V0oXumwSX5OhKSJqZuSUTRiuJdePEVgQkADr0wJnYOlnC206KjWU6CT++OkTwx1/w==" crossorigin=anonymous defer></script>
-<script src=https://hit.yolo42.com/index.min.5f45824cf0f64456f10951b04691254abf3cc9b6525f3e6241913aa4890b4c8763fc1d4bafc71e8ed1dcbe4e309104fcbb5e744a12de696270984e3d3a9347f5.js integrity="sha512-X0WCTPD2RFbxCVGwRpElSr88ybZSXz5iQZE6pIkLTIdj/B1Lr8cejtHcvk4wkQT8u150ShLeaWJwmE49OpNH9Q==" crossorigin=anonymous defer></script></body></html>
+<script src=https://hit.yolo42.com/index.min.5c31bb339884e2100b2801e8988a7d16ddfc2f22a9889320cac0a71b89301bba91452c96c49d84e1e2a0bc0d34dd2c2612fef9fad8b01ffb290dd96bcb4279db.js integrity="sha512-XDG7M5iE4hALKAHomIp9Ft38LyKpiJMgysCnG4kwG7qRRSyWxJ2E4eKgvA003SwmEv75+tiwH/spDdlry0J52w==" crossorigin=anonymous defer></script></body></html>
