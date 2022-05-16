@@ -39,7 +39,8 @@ Output the shell completion script for hit.
 hit completion
 ```
 
-Typically, you would do something like:
+Typically, you would do something like the following to enable bash
+completion for your shell.
 
 ```bash
 source <(hit completion)
