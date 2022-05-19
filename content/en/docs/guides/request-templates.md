@@ -3,7 +3,7 @@ title: "Defining request templates"
 description: "Learn how to define request templates"
 draft: false
 images: []
-weight: 110
+weight: 120
 toc: true
 ---
 

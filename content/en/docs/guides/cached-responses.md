@@ -3,7 +3,7 @@ title: "Using cached responses"
 description: "Learn how to use past responses to build requests"
 draft: false
 images: []
-weight: 120
+weight: 130
 toc: true
 ---
 
