@@ -2,4 +2,8 @@
 For other situations, there are a few other commands available:
 version # Output the version of the hit command.
 For example:
-hit version completion # Output the shell completion script for hit.</description></item></channel></rss>
+hit version completion # Output the shell completion script for hit.</description></item><item><title>Changelog</title><link>https://hit.yolo42.com/docs/reference/changelog/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hit.yolo42.com/docs/reference/changelog/</guid><description>v0.2.0 # Released May 20, 2022
+This is a bit more usable version of hit. It is intended to give you a feel of the product and its vision.
+Features that are supported:
+Core hit request workflow works for HTTP requests Request templates for re-usable requests Caching of responses and v0.1.0 # Released march 25, 2022
+The first! Most things didn&amp;rsquo;t work in this version.</description></item></channel></rss>
