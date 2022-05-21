@@ -21,7 +21,7 @@ brew install hbagdi/tap/hit
 Grab the binary from the release page and install:
 
 ```bash
-curl -sL https://github.com/hbagdi/hit/releases/download/v0.1.0/hit_0.1.0_linux_amd64.tar.gz -o hit.tar.gz
+curl -sL https://github.com/hbagdi/hit/releases/download/v0.2.0/hit_0.2.0_linux_amd64.tar.gz -o hit.tar.gz
 tar -xf hit.tar.gz -C /tmp
 sudo cp /tmp/hit /usr/local/bin/
 ```
