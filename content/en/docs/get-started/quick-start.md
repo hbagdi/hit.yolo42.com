@@ -41,13 +41,14 @@ Create a hit file using the following command:
 ```bash
 echo '
 @_global
+~
 base_url=https://httpbin.org
 version=1
+~
 
 
 @c0
-GET
-/headers
+GET /headers
 foo: bar
 baz: qux
 ' > quick-start.hit

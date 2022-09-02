@@ -24,9 +24,11 @@ Let's take a look at a basic hit file.
 # Global section defines properties that apply to all requests
 # within the parent directory.
 @_global
+~
 base_url=https://httpbin.org
 # `version` defines the format version of `.hit` files itself.
 version=1
+~
 
 
 # Each request definition begins with an identifier definition.
@@ -34,10 +36,8 @@ version=1
 # reference the request template and historical executions based on the
 # template.
 @c0
-# This line defines the HTTP method for the request. Required.
-GET
-# This line defines the HTTP path for the request. Required.
-/headers
+# This line defines the HTTP method and path for the request. Required.
+GET /headers
 # One or more headers. Optional.
 foo: bar
 baz: qux
@@ -46,8 +46,7 @@ baz: qux
 # Another request. At least one empty line must be present between two
 # subsequent requests.
 @c1
-POST
-/post
+POST /post
 foo-header: bar
 # Line beginning with `~` tells `hit` how to read the body. `y2j` format
 # instructs hit to read the body as YAML and send it as JSON in the request
@@ -57,6 +56,7 @@ foo-header: bar
 name: hit
 description: make and manage HTTP requests
 url: https://hit.yolo42.com
+~ body ends on the close `~`
 
 
 ## And so on
