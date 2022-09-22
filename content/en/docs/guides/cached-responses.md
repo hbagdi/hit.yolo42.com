@@ -21,22 +21,24 @@ Let's start with a basic example:
 ```bash
 echo '
 @_global
+~
 base_url=https://nodes.yolo42.com
 version=1
+~
 
 
 @gen-root-node
-POST
-/v1/node
+POST /v1/node
 ~y2j
 title: "root-node"
+~
 
 @create-node
-POST
-/v1/node
-~hy2j
+POST /v1/node
+~y2j
 title: "child-node"
 parent_id: "@gen-root-node.id"
+~
 ' > quick-start.hit
 ```
 
@@ -75,27 +77,28 @@ Let's take an example:
 ```bash
 echo '
 @_global
+~
 base_url=https://nodes.yolo42.com
 version=1
+~
 
 
 @gen-root-node
-POST
-/v1/node
+POST /v1/node
 ~y2j
 title: root-node
+~
 
 
 @get-node
-GET
-/v1/node/@2
+GET /v1/node/@1
 
 @create-node
-POST
-/v1/node
-~hy2j
-title: "@2"
-parent_id: "@3"
+POST /v1/node
+~y2j
+title: "@1"
+parent_id: "@2"
+~
 ' > quick-start.hit
 ```
 

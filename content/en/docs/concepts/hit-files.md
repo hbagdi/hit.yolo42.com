@@ -56,7 +56,8 @@ foo-header: bar
 name: hit
 description: make and manage HTTP requests
 url: https://hit.yolo42.com
-~ body ends on the close `~`
+~
+# body ends on the close `~`
 
 
 ## And so on

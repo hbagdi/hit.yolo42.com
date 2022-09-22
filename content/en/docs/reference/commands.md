@@ -19,7 +19,10 @@ For hitting HTTP requests, `hit` followed by the request identifier (for
 example `@foo`)
 should be sufficient.
 
-For other situations, there are a few other commands available:
+For other features, there are a few other commands available:
+
+## browse
+
 
 ## version
 

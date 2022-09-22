@@ -25,15 +25,17 @@ Let's start with a basic request:
 ```bash
 echo '
 @_global
+~
 base_url=https://nodes.yolo42.com
 version=1
+~
 
 
 @gen-root-node
-POST
-/v1/node
+POST /v1/node
 ~y2j
 title: root-node
+~
 ' > quick-start.hit
 ```
 
@@ -45,28 +47,25 @@ make it dynamic by introducing a variable.
 ```bash
 echo '
 @_global
+~
 base_url=https://nodes.yolo42.com
 version=1
+~
 
 
 @gen-root-node
-POST
-/v1/node
-~hy2j
-title: "@2"
+POST /v1/node
+~y2j
+title: "@1"
+~
 ' > quick-start.hit
 ```
 
-Two things have changed:
-
-- The body format has changed from `y2j` to `hy2j`. This instructs `hit` to
-  perform a variable resolution. When the body format is `y2j`, `hit` does not
-  perform any variable resolution.
-- The value of `title` key in the body has changed from `root-node` to `@2`.
-  The numeric value `2` indicates that the second argument from the
-  command-line should be used as the value. The CLI arguments are 0-indexed.
-  The zeroth argument is `hit` - the program name, the first is the request
-  ID which is `@gen-root-node` in this case and the second is what we will pass.
+Notable change is that the value of `title` key in the body has changed
+from `root-node` to `@1`. The numeric value `1` indicates that the first
+argument from the command-line should be used as the value. The CLI arguments
+are 1-indexed. The zeroth argument of the program the request ID which is
+`@gen-root-node` in this case and.
 
 Let's execute the request:
 
@@ -86,22 +85,24 @@ Let's take another example:
 ```bash
 echo '
 @_global
+~
 base_url=https://nodes.yolo42.com
 version=1
+~
 
 
 @gen-root-node
-POST
-/v1/node
-~hy2j
-title: "@2"
+POST /v1/node
+~y2j
+title: "@1"
+~
 
 @create-node
-POST
-/v1/node
-~hy2j
-title: "@2"
-parent_id: "@3"
+POST /v1/node
+~y2j
+title: "@1"
+parent_id: "@2"
+~
 ' > quick-start.hit
 ```
 
